@@ -1,5 +1,3 @@
-library("VIMGUI")
-
 itemPath <- "/home/claire/IdeaProjects/groupMSTRec/data/clustering/itemClusteringData"
 itemFile <- read.csv(itemPath, header=TRUE, sep = ",")
 # Escape the first col-id
@@ -26,20 +24,30 @@ groups <- as.numeric(as.character(fun.bool(item$Good.For.Groups)))
 
 newItem <- cbind(review_count,state,stars,caters,noise,seating,alcohol,kids,groups)
 
-outPath <- "/home/claire/IdeaProjects/groupMSTRec/data/clustering/itemClusteringDataTest" 
-write.csv(newItem, file=outPath,row.names = FALSE)
 # Make a summary to the item data
 # summary(itemFile)
 # summary(item)
 # sum(complete.cases(newItem))
 
 # k-means clustering
-# itemMatrix <- as.matrix(newItem)
+ks <- kmeans(newItem,centers=250,200)
+itemClusters <- ks$cluster
 
-ks <- kmeans(newItem,centers=50,30)
-plot(newItem[,2],newItem[,6], col = ks$cluster)
+# Normalize clustering result to <business_id, clusterId>
+business_id <- as.character(itemFile$business_id)
+itemClusters <- as.character(ks$cluster)
+result <- cbind(business_id,itemClusters)
+
+# Save cluster result to file
+write.csv(result,"itemClusteringResult",row.names = FALSE)
 
 
+# dissE <- daisy(newItem)
+# sk <- silhouette(ks$cluster, dissE)
+# plot(sk)
+# pdf('my_nice_plot.pdf')
+# plot(sk)
+# dev.off()
 
 ############### I'm functions ##########################
 fun.bool <- function(c){
