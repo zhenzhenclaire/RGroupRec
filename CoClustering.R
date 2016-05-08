@@ -1,6 +1,6 @@
 library(hash)
 library(kernlab)
-library(kknn)
+library(mlbench)
 
 options(stringsAsFactors=FALSE)
 
@@ -39,12 +39,22 @@ mratingMatrix<-cbind(ratingMatrix,mmatrix)
 nratingMatrix<-cbind(nmatrix,tRatingMatrix)
 rating<-rbind(mratingMatrix,nratingMatrix)
 
-
 # Start to co-clustering
-sc <- specc(rating, centers = 20)
+sc <- specc(rating, centers = 50)
+mean(sc@withinss)
 
-sc2 <- specClust(rating,centers = 20)
 
+# Evaluation
+scData <- sc@.Data
+userCl <- scData[1:50]
+itemCl <- scData[51:300]
+
+table(userCl)
+table(itemCl)
+write.csv(userCl,"UserClass",row.names = TRUE)
+write.csv(itemCl,"itemClass",row.names = TRUE)
+
+  
 # plot(rating, pch = (23 - 2 * sc))
 
 ############### I'm functions ##########################
