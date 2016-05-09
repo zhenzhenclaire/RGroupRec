@@ -1,4 +1,4 @@
-itemPath <- "/home/claire/IdeaProjects/groupMSTRec/data/clustering/itemClusteringData"
+ bbitemPath <- "/home/claire/IdeaProjects/groupMSTRec/data/clustering/itemClusteringData"
 itemFile <- read.csv(itemPath, header=TRUE, sep = ",")
 # Escape the first col-id
 item <- itemFile[,-1]
@@ -39,7 +39,7 @@ itemClusters <- as.character(ks$cluster)
 result <- cbind(business_id,itemClusters)
 
 # Save cluster result to file
-write.csv(result,"itemClusteringResult",row.names = FALSE)
+write.csv(result,"itemSummary/itemClusteringResult",row.names = FALSE)
 
 
 # dissE <- daisy(newItem)

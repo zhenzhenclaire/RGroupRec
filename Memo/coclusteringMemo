@@ -1,0 +1,8 @@
+File -- Variable -- Discription
+
+"Coclustering/user_usercl_mixcl" -- user_usercl_mixcl -- <userId, cl, mixcl>
+"Coclustering/usercl_mixcl" -- usercl_mixcl -- <usercl,mixcl>
+"Coclustering/user_cl_star" -- user_cl_star -- <user_id, userClusters, userstars>
+
+"Coclustering/usercl_avg" -- userClAvg -- <usercl, avgstars>
+"Coclustering/mixcl_avgstars" -- mixcl_avgstars -- <mixId, avgstar> 3.575892

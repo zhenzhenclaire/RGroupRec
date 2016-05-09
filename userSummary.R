@@ -26,7 +26,7 @@ userClusters <- as.character(ks$cluster)
 result <- cbind(user_id,userClusters)
 
 # Save cluster result to file
-write.csv(result,"userClusteringResult",row.names = FALSE)
+write.csv(result,"userSummary/userClusteringResult",row.names = FALSE)
 
 ############### I'm functions ##########################
 min.max.norm <- function(x){
